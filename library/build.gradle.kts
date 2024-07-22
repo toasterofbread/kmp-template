@@ -1,6 +1,10 @@
+@file:OptIn(ExperimentalKotlinGradlePluginApi::class, ExperimentalWasmDsl::class)
+
 import com.vanniktech.maven.publish.SonatypeHost
 import com.vanniktech.maven.publish.KotlinMultiplatform
 import com.vanniktech.maven.publish.JavadocJar
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 
 plugins {
     id("com.android.library")
@@ -25,7 +29,22 @@ kotlin {
     linuxArm64()
     mingwX64()
 
-    applyDefaultHierarchyTemplate()
+    wasmJs {
+        browser()
+    }
+    
+    applyDefaultHierarchyTemplate {
+        common {
+            group("jvm") {
+                withAndroidTarget()
+                withJvm()
+            }
+            withLinuxX64()
+            withLinuxArm64()
+            withMingwX64()
+            withWasmJs()
+        }
+    }
 
     sourceSets {
         val commonMain by getting {
