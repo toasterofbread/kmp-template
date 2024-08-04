@@ -10,3 +10,4 @@ local.properties
 xcuserdata
 .vscode
 .kotlin
+kotlin-js-store
