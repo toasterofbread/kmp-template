@@ -34,7 +34,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":library"))
+                implementation(projects.library)
 
                 implementation(libs.ktor.core)
             }
@@ -43,6 +43,12 @@ kotlin {
         val jvmMain by getting {
             dependencies {
                 implementation(compose.desktop.currentOs)
+            }
+        }
+
+        val androidMain by getting {
+            dependencies {
+                implementation(libs.androidx.activity.compose)
             }
         }
     }

@@ -1,8 +1,5 @@
 @file:Suppress("UnstableApiUsage")
 
-include(":application:androidMain")
-
-
 pluginManagement {
     includeBuild("build-logic")
 
