@@ -1,6 +1,5 @@
 import com.vanniktech.maven.publish.SonatypeHost
 import com.vanniktech.maven.publish.KotlinMultiplatform
-import com.vanniktech.maven.publish.JavadocJar
 
 plugins {
     id("com.vanniktech.maven.publish")

@@ -1,43 +1,24 @@
-@file:OptIn(ExperimentalWasmDsl::class, ExperimentalKotlinGradlePluginApi::class)
-
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
+import util.addTestDependencies
 
 plugins {
-    id("android-library-conventions")
-
     kotlin("multiplatform")
+    id("dev.mokkery")
 }
 
 kotlin {
-    jvm()
-
-    androidTarget {
-        publishLibraryVariants("release")
-        compilerOptions {
-            jvmTarget = JvmTarget.JVM_1_8
-        }
-    }
-
-    linuxX64()
-    linuxArm64()
-    mingwX64()
-
-    wasmJs {
-        browser()
-    }
-
-    applyDefaultHierarchyTemplate {
-        common {
-            group("jvm") {
-                withAndroidTarget()
-                withJvm()
+    sourceSets {
+        all {
+            languageSettings.apply {
+                enableLanguageFeature("ExpectActualClasses")
+                optIn("kotlin.ExperimentalStdlibApi")
+                optIn("kotlinx.cinterop.ExperimentalForeignApi")
             }
-            withLinuxX64()
-            withLinuxArm64()
-            withMingwX64()
-            withWasmJs()
+        }
+
+        commonTest {
+            addTestDependencies(project)
         }
     }
+
+    jvmToolchain(17)
 }

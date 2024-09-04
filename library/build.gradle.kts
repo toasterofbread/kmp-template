@@ -1,5 +1,8 @@
+import util.configureAllKmpTargets
+
 plugins {
     id("kmp-conventions")
+    id("android-library-conventions")
     id("publishing-conventions")
 
     alias(libs.plugins.kotlin)
@@ -7,6 +10,8 @@ plugins {
 }
 
 kotlin {
+    configureAllKmpTargets()
+
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -18,12 +23,7 @@ kotlin {
 
 val projectName: String = libs.versions.project.name.get()
 val projectVersion: String = project.libs.versions.project.name.get()
-val artifactName: String = "library"
-
-android {
-    namespace = "dev.toastbits.$projectName.$artifactName"
-}
 
 mavenPublishing {
-    coordinates("dev.toastbits.$projectName", artifactName, projectVersion)
+    coordinates("dev.toastbits.$projectName", "library", projectVersion)
 }
