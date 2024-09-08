@@ -1,6 +1,6 @@
 [versions]
 project-name = "kmptemplate"
-project-version = "0.0.1"
+project-version-name = "0.0.1"
 project-version-inc = "1"
 android-sdk-compile = "34"
 android-sdk-target = "34"
